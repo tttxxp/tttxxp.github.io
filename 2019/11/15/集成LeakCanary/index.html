@@ -84,7 +84,7 @@
 <meta property="og:site_name" content="Xiangpeng&#39;s Blog">
 <meta property="og:description" content="集成 修改build.gradle  1234dependencies &amp;#123;  &#x2F;&#x2F; debugImplementation because LeakCanary should only run in debug builds.  debugImplementation &amp;apos;com.squareup.leakcanary:leakcanary-android:2.0-beta-3&amp;apos;&amp;#125">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-15T03:12:02.552Z">
+<meta property="og:updated_time" content="2019-11-15T10:41:58.940Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -713,6 +713,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'U0gJOCvbysCdvKCl8uA1GHHB-gzGzoHsz',
+        appKey: '1rRgFRNWwWeS3DLm5GY9mPnG',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
