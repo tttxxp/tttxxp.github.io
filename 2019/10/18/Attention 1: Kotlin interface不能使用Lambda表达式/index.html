@@ -77,14 +77,14 @@
 
 
 
-<meta name="description" content="最近尝试使用Kotlin编写Android App，在将Java文件转换成Kotlin时遇到了这个问题：  在Kotlin中使用interface时，interface不能转换成lambda表达式    使用场景Kotlin调用内部interface12345678910111213141516171819202122@RunWith(AndroidJUnit4::class)class Exa">
+<meta name="description" content="最近尝试使用Kotlin编写Android App，在将Java文件转换成Kotlin时遇到了这个问题：  在Kotlin中使用interface时，interface不能转换成lambda表达式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Attention 1: Kotlin interface不能使用Lambda表达式">
 <meta property="og:url" content="https:&#x2F;&#x2F;tttxxp.github.io&#x2F;2019&#x2F;10&#x2F;18&#x2F;Attention%201:%20Kotlin%20interface%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="Xiangpeng&#39;s Blog">
-<meta property="og:description" content="最近尝试使用Kotlin编写Android App，在将Java文件转换成Kotlin时遇到了这个问题：  在Kotlin中使用interface时，interface不能转换成lambda表达式    使用场景Kotlin调用内部interface12345678910111213141516171819202122@RunWith(AndroidJUnit4::class)class Exa">
+<meta property="og:description" content="最近尝试使用Kotlin编写Android App，在将Java文件转换成Kotlin时遇到了这个问题：  在Kotlin中使用interface时，interface不能转换成lambda表达式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-14T09:27:24.813Z">
+<meta property="og:updated_time" content="2019-11-18T08:43:31.739Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -273,7 +273,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-18T16:43:31+08:00">
+                2019-11-18
+              </time>
             
           </span>
 
@@ -311,6 +323,25 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  581
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -330,6 +361,8 @@
         <blockquote>
 <p>最近尝试使用Kotlin编写Android App，在将Java文件转换成Kotlin时遇到了这个问题：<br>  在Kotlin中使用interface时，interface不能转换成lambda表达式  </p>
 </blockquote>
+<a id="more"></a>
+
 <h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><h2 id="Kotlin调用内部interface"><a href="#Kotlin调用内部interface" class="headerlink" title="Kotlin调用内部interface"></a>Kotlin调用内部interface</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(AndroidJUnit4::class)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleInstrumentedTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">useAppContext</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// 错误❌</span></span><br><span class="line">        <span class="comment">// Error: Type mismatch: interred type is (View) -&gt; Unit but KotlinInterface was expected</span></span><br><span class="line">        setKotlinInterface &#123; child: View -&gt; useAppContext() &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 正确✅</span></span><br><span class="line">        setKotlinInterface(<span class="keyword">object</span>: KotlinInterface &#123;</span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onClick</span><span class="params">(child: <span class="type">View</span>)</span></span> &#123;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">setKotlinInterface</span><span class="params">(x: <span class="type">KotlinInterface</span>)</span></span> = <span class="built_in">Unit</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">interface</span> <span class="title">KotlinInterface</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">onClick</span><span class="params">(child: <span class="type">View</span>)</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Kotlin调用Java-interface"><a href="#Kotlin调用Java-interface" class="headerlink" title="Kotlin调用Java interface"></a>Kotlin调用Java interface</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(AndroidJUnit4::class)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleInstrumentedTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">useAppContext</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// 正确✅</span></span><br><span class="line">        setJavaInterface(<span class="keyword">object</span> : JavaInterface &#123;</span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onClick</span><span class="params">(child: <span class="type">View</span>?)</span></span> &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 正确✅，使用lambda表达式</span></span><br><span class="line">        setJavaInterface(JavaInterface &#123; &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">setJavaInterface</span><span class="params">(x: <span class="type">JavaInterface</span>)</span></span> = <span class="built_in">Unit</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -448,9 +481,11 @@
 
   
     <div class="comments" id="comments">
+      <div id="gitalk-container"></div>
     </div>
 
   
+
 
 
         </div>
@@ -508,7 +543,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -569,6 +604,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">tttxxp</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">1k</span>
   
 </div>
 
@@ -727,8 +771,8 @@
 
 
 
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <link rel="stylesheet" href="/css/gitalk.css">
+  <script src="/js/src/gitalk.min.js"></script>
   <div id="gitalk-container"></div>
   <script type="text/javascript">
     var gitalk = new Gitalk({
@@ -764,5 +808,5 @@
 
   
 
-</body>
+<script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
 </html>
