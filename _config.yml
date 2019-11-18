@@ -98,3 +98,8 @@ deploy:
   type: git
   repo: git@github.com:tttxxp/tttxxp.github.io.git
   branch: master
+
+lazyload:
+  enable: true
+  onlypost: false
+  loadingImg: 
