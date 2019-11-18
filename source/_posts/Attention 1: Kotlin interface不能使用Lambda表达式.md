@@ -8,6 +8,8 @@ category:
 > 最近尝试使用Kotlin编写Android App，在将Java文件转换成Kotlin时遇到了这个问题：
 >   在Kotlin中使用interface时，interface不能转换成lambda表达式  
 
+<!-- more -->
+
 # 使用场景
 ## Kotlin调用内部interface
 ``` kotlin
