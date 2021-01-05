@@ -12,7 +12,7 @@
     "version": "4.2.1"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "gitalk": "^1.6.2",
     "hexo": "^4.2.1",
